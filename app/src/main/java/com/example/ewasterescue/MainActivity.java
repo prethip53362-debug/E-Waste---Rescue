@@ -262,33 +262,28 @@ public class MainActivity extends Activity {
     }
 
     private void showCenters() {
-        page("Recycling Centres",
-                "Choose a safe way to find a collection point.");
+    page("Recycling Centres",
+            "Choose a safe way to find a collection point.");
 
-        addInfo("Find an authorised recycler",
-                "Check official CPCB or Tamil Nadu Pollution " +
-                "Control Board resources for current authorised " +
-                "e-waste recyclers and collection options.");
+    addInfo("Find an authorised recycler",
+            "Check official CPCB or Tamil Nadu Pollution " +
+            "Control Board resources for current authorised " +
+            "e-waste recyclers and collection options.");
 
-        Button search = actionButton("Open CPCB Website");
-        content.addView(search);
-        search.setOnClickListener(v -> {
-            try {
-                startActivity(new android.content.Intent(
-                    android.content.Intent.ACTION_VIEW,
-                    android.net.Uri.parse(
-                        "https://cpcb.nic.in/")));
-            } catch (Exception e) {
-                Toast.makeText(this, "Unable to open website",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
+    Button search = actionButton("Recycling Centre Information");
+    search.setOnClickListener(v -> {
+        Toast.makeText(
+                MainActivity.this,
+                "Online centre search will be added soon.",
+                Toast.LENGTH_LONG
+        ).show();
+    });
 
-        addInfo("Important",
-                "This prototype does not yet show verified nearby " +
-                "centres or confirm their operating hours.");
+    addInfo("Important",
+            "Nearby centre search and verified centre details " +
+            "are not connected in this prototype yet.");
 
-        backButton();
+    backButton();
     }
 
     private void showPickup() {
