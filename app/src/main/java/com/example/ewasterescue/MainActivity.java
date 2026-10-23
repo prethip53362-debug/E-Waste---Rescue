@@ -748,8 +748,8 @@ public class MainActivity extends Activity {
 
     private void backButton() {
     Button back = actionButton("← Back to Home");
-    back.setOnClickListener(v -> {
-        showHome();
-    });
-}
+            back.setOnClickListener(v -> {
+            showHome();
+        });
+    }
 }
