@@ -287,21 +287,138 @@ public class MainActivity extends Activity {
     }
 
     private void showPickup() {
-        page("Request Pickup",
-                "Prepare the details needed for a collection request.");
+    page("Request Pickup",
+            "Fill in your e-waste details to prepare a pickup request.");
 
-        addInfo("Before requesting collection",
-                "Identify the device, estimate its quantity, " +
-                "and check whether an authorised recycler serves " +
-                "your area.");
+    addInfo("Step 1 of 2",
+            "Provide the device details below.");
 
-        addInfo("Prototype status",
-                "Online booking and request tracking are not " +
-                "connected yet. This screen does not submit a " +
-                "real pickup request.");
+    TextView deviceLabel = text(
+            "Device Type", 16, DARK, true);
+    content.addView(deviceLabel);
+    space(content, 8);
+
+    android.widget.Spinner deviceSpinner =
+            new android.widget.Spinner(this);
+
+    String[] devices = {
+            "Select device",
+            "Mobile Phone",
+            "Laptop / Computer",
+            "Battery",
+            "Charger / Cable",
+            "Earphones",
+            "Other Electronics"
+    };
+
+    android.widget.ArrayAdapter<String> adapter =
+            new android.widget.ArrayAdapter<>(
+                    this,
+                    android.R.layout.simple_spinner_item,
+                    devices);
+
+    adapter.setDropDownViewResource(
+            android.R.layout.simple_spinner_dropdown_item);
+
+    deviceSpinner.setAdapter(adapter);
+
+    content.addView(deviceSpinner,
+            new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, 55));
+
+    space(content, 16);
+
+    TextView quantityLabel = text(
+            "Quantity", 16, DARK, true);
+    content.addView(quantityLabel);
+    space(content, 8);
+
+    android.widget.EditText quantityInput =
+            new android.widget.EditText(this);
+
+    quantityInput.setHint("Enter quantity");
+    quantityInput.setInputType(
+            android.text.InputType.TYPE_CLASS_NUMBER);
+    quantityInput.setSingleLine(true);
+
+    content.addView(quantityInput,
+            new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, 55));
+
+    space(content, 16);
+
+    TextView locationLabel = text(
+            "Pickup Location", 16, DARK, true);
+    content.addView(locationLabel);
+    space(content, 8);
+
+    android.widget.EditText locationInput =
+            new android.widget.EditText(this);
+
+    locationInput.setHint("Enter area / city");
+    locationInput.setSingleLine(true);
+
+    content.addView(locationInput,
+            new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, 55));
+
+    space(content, 22);
+
+    Button submit = actionButton("Prepare Pickup Request");
+
+    submit.setOnClickListener(v -> {
+        String device =
+                deviceSpinner.getSelectedItem().toString();
+
+        String quantity =
+                quantityInput.getText().toString().trim();
+
+        String location =
+                locationInput.getText().toString().trim();
+
+        if (device.equals("Select device")) {
+            Toast.makeText(this,
+                    "Please select a device.",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (quantity.isEmpty()
+                || Integer.parseInt(quantity) <= 0) {
+            Toast.makeText(this,
+                    "Enter a valid quantity.",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (location.isEmpty()) {
+            Toast.makeText(this,
+                    "Please enter your pickup location.",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        page("Request Prepared",
+                "Your demo pickup request details are ready.");
+
+        addInfo("Device", device);
+        addInfo("Quantity", quantity);
+        addInfo("Location", location);
+
+        addInfo("Demo Notice",
+                "This is a hackathon prototype. " +
+                "Your details have not been sent to a recycler, " +
+                "and no real pickup has been booked.");
 
         backButton();
-    }
+    });
+
+    addInfo("Privacy",
+            "Enter only demo details. This prototype does not " +
+            "send or store your information online.");
+
+    backButton();
+}
 
     private void page(String title, String subtitle) {
         ScrollView scroll = new ScrollView(this);
