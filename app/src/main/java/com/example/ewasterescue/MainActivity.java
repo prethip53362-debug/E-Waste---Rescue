@@ -134,7 +134,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
         ScrollView scroll = new ScrollView(this);
         scroll.setFillViewport(true);
-        scroll.setBackgroundColor(BG);
+        scroll.setBackgroundColor(Color.rgb(8, 45, 32));
 
         content = column();
         content.setPadding(20, 22, 20, 26);
