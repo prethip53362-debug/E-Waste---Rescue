@@ -122,6 +122,7 @@ logo.setScaleType(ImageView.ScaleType.FIT_CENTER);
     getWindow().setStatusBarColor(Color.rgb(8, 45, 32));
 getWindow().setNavigationBarColor(Color.rgb(8, 45, 32));
 
+    splash.setBackgroundResource(R.drawable.splash_screen);
     setContentView(splash);
 
     logo.setAlpha(0f);
