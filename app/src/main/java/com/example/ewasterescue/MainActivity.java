@@ -91,7 +91,7 @@ private void showSplash() {
     splash.setOrientation(LinearLayout.VERTICAL);
     splash.setGravity(Gravity.CENTER);
     splash.setPadding(28, 30, 28, 30);
-    splash.setBackground(shape(DARK, 28));
+    splash.setBackgroundColor(Color.rgb(8, 45, 32));
 
     TextView logo = text("♻", 76, GREEN, true);
     logo.setGravity(Gravity.CENTER);
@@ -114,6 +114,9 @@ private void showSplash() {
             16, Color.WHITE, false);
     tagline.setGravity(Gravity.CENTER);
     splash.addView(tagline);
+
+    getWindow().setStatusBarColor(Color.rgb(8, 45, 32));
+getWindow().setNavigationBarColor(Color.rgb(8, 45, 32));
 
     setContentView(splash);
 
