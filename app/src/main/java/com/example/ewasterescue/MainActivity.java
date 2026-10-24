@@ -334,14 +334,14 @@ private void showHome() {
 
     // SERVICES SECTION
     content.addView(text(
-            "What would you like to do?",
-            21, DARK, true));
+        "What would you like to do?",
+        21, WHITE, true));
 
     space(content, 5);
 
     content.addView(text(
-            "Everything you need for responsible e-waste handling.",
-            13, MUTED, false));
+        "Everything you need for responsible e-waste handling.",
+        13, Color.rgb(210, 230, 218), false));
 
     space(content, 16);
 
