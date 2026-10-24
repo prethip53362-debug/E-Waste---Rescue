@@ -351,8 +351,6 @@ private void showDashboard() {
     space(content, 8);
 
     Button back = makeButton("←  Back to Home");
-    back.setTextColor(Color.WHITE);
-    back.setBackground(shape(GREEN, 16));
     content.addView(back);
     back.setOnClickListener(v -> showHome());
 }
@@ -395,20 +393,30 @@ private void showDashboard() {
 
     // BUTTON CREATOR
 
-    private Button makeButton(String label) {
-        Button b = new Button(this);
-        b.setText(label);
-        b.setTextColor(Color.WHITE);
-        b.setTextSize(15);
-        b.setAllCaps(false);
-        b.setGravity(Gravity.CENTER);
-        b.setBackground(shape(GREEN, 16));
+    
+private Button makeButton(String label) {
+    Button b = new Button(this);
 
-        b.setLayoutParams(new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, 54));
+    b.setText(label);
+    b.setTextColor(Color.WHITE);
+    b.setTextSize(15);
+    b.setAllCaps(false);
+    b.setGravity(Gravity.CENTER);
+    b.setPadding(12, 0, 12, 0);
+    b.setMinHeight(0);
+    b.setMinimumHeight(0);
+    b.setStateListAnimator(null);
+    b.setBackground(shape(GREEN, 16));
 
-        return b;
-    }
+    LinearLayout.LayoutParams params =
+            new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    54);
+
+    b.setLayoutParams(params);
+
+    return b;
+}
 
     // BACK TO HOME
 
