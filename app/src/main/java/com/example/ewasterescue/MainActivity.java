@@ -49,7 +49,7 @@ protected void onCreate(Bundle savedInstanceState) {
                 });
     }
 
-    showHome();
+    showSplash();
 }
 
     private GradientDrawable shape(int color, int radius) {
@@ -84,6 +84,61 @@ protected void onCreate(Bundle savedInstanceState) {
     }
 
     // HOME SCREEN
+
+    
+private void showSplash() {
+    LinearLayout splash = new LinearLayout(this);
+    splash.setOrientation(LinearLayout.VERTICAL);
+    splash.setGravity(Gravity.CENTER);
+    splash.setPadding(28, 30, 28, 30);
+    splash.setBackground(shape(DARK, 28));
+
+    TextView logo = text("♻", 76, GREEN, true);
+    logo.setGravity(Gravity.CENTER);
+    splash.addView(logo);
+
+    space(splash, 18);
+
+    TextView title = text("E-WASTE", 32, Color.WHITE, true);
+    title.setGravity(Gravity.CENTER);
+    splash.addView(title);
+
+    TextView subtitle = text("RESCUE", 28, GREEN, true);
+    subtitle.setGravity(Gravity.CENTER);
+    splash.addView(subtitle);
+
+    space(splash, 18);
+
+    TextView tagline = text(
+            "Give old electronics a new life.",
+            16, Color.WHITE, false);
+    tagline.setGravity(Gravity.CENTER);
+    splash.addView(tagline);
+
+    setContentView(splash);
+
+    logo.setAlpha(0f);
+    logo.setScaleX(0.5f);
+    logo.setScaleY(0.5f);
+    logo.animate().alpha(1f).scaleX(1f).scaleY(1f)
+            .setDuration(900).start();
+
+    title.setAlpha(0f);
+    title.setTranslationY(35f);
+    title.animate().alpha(1f).translationY(0f)
+            .setStartDelay(350).setDuration(700).start();
+
+    subtitle.setAlpha(0f);
+    subtitle.setTranslationX(45f);
+    subtitle.animate().alpha(1f).translationX(0f)
+            .setStartDelay(650).setDuration(700).start();
+
+    tagline.setAlpha(0f);
+    tagline.animate().alpha(1f)
+            .setStartDelay(1100).setDuration(700).start();
+
+    splash.postDelayed(() -> showHome(), 3000);
+}
 
     private void showHome() {
         ScrollView scroll = new ScrollView(this);
