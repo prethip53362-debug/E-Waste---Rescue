@@ -35,10 +35,28 @@ public class MainActivity extends Activity {
     private LinearLayout content;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        showSplash();
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    if (android.os.Build.VERSION.SDK_INT >= 35) {
+        getWindow().getDecorView().setOnApplyWindowInsetsListener(
+                (view, insets) -> {
+                    android.graphics.Insets bars =
+                            insets.getInsets(
+                                    android.view.WindowInsets.Type.systemBars());
+
+                    view.setPadding(
+                            bars.left,
+                            bars.top,
+                            bars.right,
+                            bars.bottom);
+
+                    return insets;
+                });
     }
+
+    showSplash();
+}
 
     private GradientDrawable shape(int color, int radius) {
         GradientDrawable d = new GradientDrawable();
