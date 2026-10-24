@@ -21,6 +21,7 @@ public class MainActivity extends Activity {
     private final int DARK = Color.rgb(29, 55, 43);
     private final int PALE = Color.rgb(237, 247, 239);
     private final int MUTED = Color.rgb(104, 122, 110);
+
     private LinearLayout content;
 
     @Override
@@ -36,21 +37,22 @@ public class MainActivity extends Activity {
         return d;
     }
 
-    private TextView text(String value, int size, int color,
-                          boolean bold) {
+    private TextView text(String value, int size,
+                          int color, boolean bold) {
         TextView t = new TextView(this);
         t.setText(value);
         t.setTextSize(size);
         t.setTextColor(color);
-        if (bold) t.setTypeface(null, Typeface.BOLD);
+        if (bold) {
+            t.setTypeface(null, Typeface.BOLD);
+        }
         t.setIncludeFontPadding(true);
         return t;
     }
 
     private void space(LinearLayout parent, int height) {
         View v = new View(this);
-        parent.addView(v, new LinearLayout.LayoutParams(
-                1, height));
+        parent.addView(v, new LinearLayout.LayoutParams(1, height));
     }
 
     private LinearLayout column() {
@@ -58,6 +60,8 @@ public class MainActivity extends Activity {
         box.setOrientation(LinearLayout.VERTICAL);
         return box;
     }
+
+    // HOME SCREEN
 
     private void showHome() {
         ScrollView scroll = new ScrollView(this);
@@ -70,30 +74,16 @@ public class MainActivity extends Activity {
 
         LinearLayout brand = new LinearLayout(this);
         brand.setGravity(Gravity.CENTER_VERTICAL);
-
-        TextView logo = text("♻", 34, GREEN, true);
-        brand.addView(logo);
+        brand.addView(text("♻", 36, GREEN, true));
 
         LinearLayout brandText = column();
         brandText.setPadding(10, 0, 0, 0);
-        brandText.addView(text("E-WASTE", 19, DARK, true));
-        brandText.addView(text("RESCUE", 13, GREEN, true));
+        brandText.addView(text("E-WASTE", 20, DARK, true));
+        brandText.addView(text("RESCUE", 14, GREEN, true));
         brand.addView(brandText);
 
-        TextView tag = text("ECO APP", 11, GREEN, true);
-        tag.setGravity(Gravity.CENTER);
-        tag.setPadding(10, 8, 10, 8);
-        tag.setBackground(shape(PALE, 30));
-        LinearLayout.LayoutParams tagParams =
-                new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT);
-        tagParams.gravity = Gravity.CENTER_VERTICAL;
-        tagParams.leftMargin = 12;
-        brand.addView(tag, tagParams);
-
         content.addView(brand);
-        space(content, 26);
+        space(content, 24);
 
         LinearLayout hero = column();
         hero.setPadding(20, 22, 20, 22);
@@ -110,45 +100,35 @@ public class MainActivity extends Activity {
                 15, MUTED, false));
         space(hero, 18);
 
-        Button explore = new Button(this);
-        explore.setText("Explore E-Waste  →");
-        explore.setTextColor(Color.WHITE);
-        explore.setAllCaps(false);
-        explore.setTextSize(15);
-        explore.setBackground(shape(GREEN, 16));
-        hero.addView(explore, new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, 54));
-
+        Button explore = makeButton("Explore E-Waste");
+        hero.addView(explore);
         explore.setOnClickListener(v -> showCategories());
         content.addView(hero);
 
-        space(content, 26);
+        space(content, 24);
         content.addView(text("What do you want to do?",
                 21, DARK, true));
-        space(content, 6);
-        content.addView(text("Choose a service to get started.",
-                14, MUTED, false));
-        space(content, 16);
+        space(content, 14);
 
         addService("📱", "Identify E-Waste",
-                "Choose a device and learn what to do",
+                "Learn how to handle electronic items",
                 () -> showCategories());
 
-        addService("♻️", "Recycling Guide",
+        addService("♻", "Recycling Guide",
                 "Learn safe reuse and disposal tips",
                 () -> showGuide());
 
         addService("📍", "Recycling Centres",
-                "Find responsible recycling options",
+                "Explore responsible recycling options",
                 () -> showCenters());
 
         addService("🚚", "Request Pickup",
-                "Explore the e-waste pickup process",
+                "View the pickup request process",
                 () -> showPickup());
 
-        space(content, 22);
+        space(content, 20);
         TextView footer = text(
-                "SMALL ACTIONS. BIGGER IMPACT. 🌍",
+                "SMALL ACTIONS. BIGGER IMPACT.",
                 12, GREEN, true);
         footer.setGravity(Gravity.CENTER);
         content.addView(footer);
@@ -161,7 +141,8 @@ public class MainActivity extends Activity {
         LinearLayout card = new LinearLayout(this);
         card.setGravity(Gravity.CENTER_VERTICAL);
         card.setPadding(14, 12, 12, 12);
-        card.setBackground(shape(Color.rgb(248, 251, 248), 18));
+        card.setBackground(
+                shape(Color.rgb(248, 251, 248), 18));
 
         LinearLayout.LayoutParams cp =
                 new LinearLayout.LayoutParams(
@@ -173,152 +154,143 @@ public class MainActivity extends Activity {
         TextView icon = text(emoji, 27, GREEN, false);
         icon.setGravity(Gravity.CENTER);
         icon.setBackground(shape(PALE, 15));
-        card.addView(icon, new LinearLayout.LayoutParams(54, 54));
+        card.addView(icon,
+                new LinearLayout.LayoutParams(54, 54));
 
         LinearLayout details = column();
         details.setPadding(12, 0, 4, 0);
         details.addView(text(title, 16, DARK, true));
         details.addView(text(subtitle, 12, MUTED, false));
 
-        LinearLayout.LayoutParams dp =
-                new LinearLayout.LayoutParams(0,
-                        ViewGroup.LayoutParams.WRAP_CONTENT, 1);
-        card.addView(details, dp);
+        card.addView(details,
+                new LinearLayout.LayoutParams(
+                        0, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
 
-        TextView arrow = text("›", 28, GREEN, true);
-        card.addView(arrow);
-
+        card.addView(text("›", 28, GREEN, true));
         card.setOnClickListener(v -> action.run());
     }
 
+    // IDENTIFY E-WASTE
+
     private void showCategories() {
         page("Identify E-Waste",
-                "Select an electronic item to learn about safe handling.");
+                "Select an item to learn about safe handling.");
 
-        addCategory("📱", "Mobile phones",
-                "Back up your data, erase personal information, " +
-                "and take unwanted phones to an authorised recycler.");
+        addInfo("📱 Mobile Phones",
+                "Back up your data and erase personal information. " +
+                "Consider repair, reuse or authorised recycling.");
 
-        addCategory("💻", "Laptops & computers",
-                "Back up and securely erase your data before " +
-                "reuse, repair or authorised recycling.");
+        addInfo("💻 Laptops & Computers",
+                "Protect your files before repair, reuse " +
+                "or authorised recycling.");
 
-        addCategory("🔌", "Chargers & cables",
-                "Keep cables separate from general rubbish. " +
-                "Use an authorised e-waste collection point.");
+        addInfo("🔌 Chargers & Cables",
+                "Keep electronic accessories out of general " +
+                "rubbish. Use a suitable collection point.");
 
-        addCategory("🔋", "Batteries",
+        addInfo("🔋 Batteries",
                 "Do not puncture, crush or burn batteries. " +
-                "Keep damaged batteries away from heat and seek " +
-                "specialist handling.");
+                "Keep damaged batteries away from heat.");
 
-        addCategory("🎧", "Earphones & accessories",
-                "Check for repair or reuse options. Recycle " +
-                "electronic accessories through authorised channels.");
+        addInfo("🎧 Earphones & Accessories",
+                "Check for repair or reuse before recycling " +
+                "through appropriate collection channels.");
 
         backButton();
     }
 
-    private void addCategory(String emoji, String title,
-                             String advice) {
-        LinearLayout card = column();
-        card.setPadding(16, 15, 16, 15);
-        card.setBackground(shape(PALE, 18));
-
-        LinearLayout.LayoutParams p =
-                new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT);
-        p.bottomMargin = 12;
-        content.addView(card, p);
-
-        card.addView(text(emoji + "  " + title,
-                18, DARK, true));
-        space(card, 7);
-        card.addView(text(advice, 14, MUTED, false));
-    }
+    // RECYCLING GUIDE
 
     private void showGuide() {
         page("Recycling Guide",
                 "Simple steps for responsible e-waste handling.");
 
-        addInfo("01  Repair or reuse",
-                "Check whether the device can be repaired, donated " +
-                "or safely reused before recycling.");
+        addInfo("01  Repair or Reuse",
+                "Check whether a device can be repaired, " +
+                "donated or safely reused.");
 
-        addInfo("02  Protect your data",
+        addInfo("02  Protect Your Data",
                 "Back up important files and erase personal " +
                 "information before handing over a device.");
 
-        addInfo("03  Handle batteries carefully",
-                "Never burn, puncture or put batteries in regular " +
-                "household rubbish. Follow local collection guidance.");
+        addInfo("03  Handle Batteries Carefully",
+                "Never burn or puncture batteries. Follow " +
+                "appropriate battery collection guidance.");
 
-        addInfo("04  Choose authorised recyclers",
-                "Use authorised e-waste collection centres or " +
-                "recyclers. Avoid informal dismantling.");
+        addInfo("04  Choose Authorised Recyclers",
+                "Use authorised collection centres or recyclers.");
 
         backButton();
     }
 
+    // RECYCLING CENTRES
+
     private void showCenters() {
-    page("Recycling Centres",
-            "Choose a safe way to find a collection point.");
+        page("Recycling Centres",
+                "Explore responsible recycling options.");
 
-    addInfo("Find an authorised recycler",
-            "Check official CPCB or Tamil Nadu Pollution " +
-            "Control Board resources for current authorised " +
-            "e-waste recyclers and collection options.");
+        addInfo("Find an Authorised Recycler",
+                "Check official CPCB or Tamil Nadu Pollution " +
+                "Control Board resources for current recycler " +
+                "information.");
 
-    Button search = actionButton("Recycling Centre Information");
-    search.setOnClickListener(v -> {
-        Toast.makeText(
+        Button info = makeButton("Centre Information");
+        content.addView(info);
+        info.setOnClickListener(v -> Toast.makeText(
                 MainActivity.this,
-                "Online centre search will be added soon.",
-                Toast.LENGTH_LONG
-        ).show();
-    });
+                "Check official recycler listings before visiting.",
+                Toast.LENGTH_LONG).show());
 
-    addInfo("Important",
-            "Nearby centre search and verified centre details " +
-            "are not connected in this prototype yet.");
+        addInfo("Before Visiting",
+                "Confirm accepted devices, opening hours and " +
+                "collection arrangements with the centre.");
 
-    backButton();
+        backButton();
     }
+
+    // PICKUP INFORMATION
 
     private void showPickup() {
         page("Request Pickup",
-                "Prepare the details needed for a collection request.");
+                "Prepare for a responsible e-waste collection.");
 
-        addInfo("Before requesting collection",
-                "Identify the device, estimate its quantity, " +
-                "and check whether an authorised recycler serves " +
-                "your area.");
+        addInfo("Step 1",
+                "Identify the electronic device you want to recycle.");
 
-        addInfo("Prototype status",
-                "Online booking and request tracking are not " +
-                "connected yet. This screen does not submit a " +
-                "real pickup request.");
+        addInfo("Step 2",
+                "Estimate the quantity and note your area or city.");
+
+        addInfo("Step 3",
+                "Contact an authorised recycler to confirm " +
+                "whether collection is available in your area.");
+
+        addInfo("Prototype Notice",
+                "This demo does not submit a real pickup request " +
+                "or send information to a recycler.");
 
         backButton();
     }
 
+    // COMMON PAGE
+
     private void page(String title, String subtitle) {
         ScrollView scroll = new ScrollView(this);
+        scroll.setFillViewport(true);
         scroll.setBackgroundColor(Color.WHITE);
 
         content = column();
         content.setPadding(22, 26, 22, 30);
         scroll.addView(content);
 
-        TextView heading = text(title, 27, DARK, true);
-        content.addView(heading);
+        content.addView(text(title, 27, DARK, true));
         space(content, 8);
         content.addView(text(subtitle, 15, MUTED, false));
         space(content, 22);
 
         setContentView(scroll);
     }
+
+    // INFORMATION CARD
 
     private void addInfo(String title, String description) {
         LinearLayout card = column();
@@ -337,28 +309,29 @@ public class MainActivity extends Activity {
         card.addView(text(description, 14, MUTED, false));
     }
 
-    private Button actionButton(String label) {
+    // BUTTON CREATOR
+
+    private Button makeButton(String label) {
         Button b = new Button(this);
         b.setText(label);
         b.setTextColor(Color.WHITE);
         b.setTextSize(15);
         b.setAllCaps(false);
+        b.setGravity(Gravity.CENTER);
         b.setBackground(shape(GREEN, 16));
 
-        LinearLayout.LayoutParams p =
-                new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT, 54);
-        p.bottomMargin = 14;
-        content.addView(b, p);
+        b.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, 54));
+
         return b;
     }
 
-    private void backButton() {
-    Button back = actionButton("← Back to Home");
-    content.addView(back);
+    // BACK TO HOME
 
-    back.setOnClickListener(v -> {
-        showHome();
-    });
-}
+    private void backButton() {
+        Button back = makeButton("← Back to Home");
+        content.addView(back);
+
+        back.setOnClickListener(v -> showHome());
+    }
 }
