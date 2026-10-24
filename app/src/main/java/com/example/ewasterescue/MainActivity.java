@@ -89,47 +89,65 @@ protected void onCreate(Bundle savedInstanceState) {
 
     
 private void showSplash() {
-    LinearLayout splash = new LinearLayout(this);
-    splash.setOrientation(LinearLayout.VERTICAL);
-    splash.setGravity(Gravity.CENTER);
-    splash.setPadding(28, 30, 28, 30);
-    splash.setBackgroundColor(Color.rgb(8, 45, 32));
+    android.widget.FrameLayout root =
+            new android.widget.FrameLayout(this);
+
+    android.widget.ImageView background =
+            new android.widget.ImageView(this);
+
+    background.setImageResource(R.drawable.splash_screen);
+    background.setScaleType(
+            android.widget.ImageView.ScaleType.CENTER_CROP);
+
+    root.addView(background,
+            new android.widget.FrameLayout.LayoutParams(
+                    -1, -1));
+
+    LinearLayout content = new LinearLayout(this);
+    content.setOrientation(LinearLayout.VERTICAL);
+    content.setGravity(Gravity.CENTER);
+    content.setPadding(28, 30, 28, 30);
+
+    android.widget.FrameLayout.LayoutParams contentParams =
+            new android.widget.FrameLayout.LayoutParams(
+                    -1, -1);
+
+    root.addView(content, contentParams);
 
     ImageView logo = new ImageView(this);
-logo.setImageResource(R.drawable.ewaste_logo);
-logo.setLayoutParams(new LinearLayout.LayoutParams(140, 140));
-logo.setScaleType(ImageView.ScaleType.FIT_CENTER);
-    splash.addView(logo);
+    logo.setImageResource(R.drawable.ewaste_logo);
 
-    space(splash, 18);
+    LinearLayout.LayoutParams logoParams =
+            new LinearLayout.LayoutParams(140, 140);
+
+    logo.setLayoutParams(logoParams);
+    logo.setScaleType(ImageView.ScaleType.FIT_CENTER);
+    content.addView(logo);
+
+    space(content, 18);
 
     TextView title = text("E-WASTE", 32, Color.WHITE, true);
     title.setGravity(Gravity.CENTER);
-    splash.addView(title);
+    content.addView(title);
 
     TextView subtitle = text("RESCUE", 28, GREEN, true);
     subtitle.setGravity(Gravity.CENTER);
-    splash.addView(subtitle);
+    content.addView(subtitle);
 
-    space(splash, 18);
+    space(content, 18);
 
     TextView tagline = text(
             "Give old electronics a new life.",
             16, Color.WHITE, false);
     tagline.setGravity(Gravity.CENTER);
-    splash.addView(tagline);
+    content.addView(tagline);
 
     getWindow().setStatusBarColor(Color.rgb(8, 45, 32));
-getWindow().setNavigationBarColor(Color.rgb(8, 45, 32));
+    getWindow().setNavigationBarColor(Color.rgb(8, 45, 32));
 
-    splash.setBackgroundResource(R.drawable.splash_screen);
-    setContentView(splash);
+    setContentView(root);
 
     logo.setAlpha(0f);
-    logo.setScaleX(0.5f);
-logo.setScaleY(0.5f);
-logo.animate().alpha(1f).scaleX(1f).scaleY(1f)
-        .setDuration(900).start();
     logo.setScaleX(0.5f);
     logo.setScaleY(0.5f);
     logo.animate().alpha(1f).scaleX(1f).scaleY(1f)
@@ -149,7 +167,7 @@ logo.animate().alpha(1f).scaleX(1f).scaleY(1f)
     tagline.animate().alpha(1f)
             .setStartDelay(1100).setDuration(700).start();
 
-    splash.postDelayed(() -> showHome(), 3000);
+    root.postDelayed(() -> showHome(), 3000);
 }
 
     private void showHome() {
