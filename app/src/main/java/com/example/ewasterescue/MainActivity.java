@@ -174,7 +174,7 @@ private void showHome() {
 
     ScrollView scroll = new ScrollView(this);
     scroll.setFillViewport(true);
-    scroll.setBackgroundColor(Color.rgb(8, 45, 32));
+    scroll.setBackgroundColor(WHITE);
     scroll.setClipToPadding(false);
 
     content = column();
@@ -336,7 +336,7 @@ private void showHome() {
     // SERVICES SECTION
     content.addView(text(
             "What would you like to do?",
-            21, WHITE, true));
+            21, DARK, true));
 
     space(content, 5);
 
