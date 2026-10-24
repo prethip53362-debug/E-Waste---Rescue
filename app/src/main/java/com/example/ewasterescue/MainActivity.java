@@ -1,6 +1,10 @@
 
 package com.example.ewasterescue;
 
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.ArrayAdapter;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.app.Activity;
@@ -295,26 +299,109 @@ info.setOnClickListener(v -> {
 
     // PICKUP INFORMATION
 
-    private void showPickup() {
-        page("Request Pickup",
-                "Prepare for a responsible e-waste collection.");
+private void showPickup() {
+    page("Request Pickup",
+            "Fill in your details to prepare a demo pickup request.");
 
-        addInfo("Step 1",
-                "Identify the electronic device you want to recycle.");
+    addInfo("♻️ Responsible Recycling",
+            "Submit a demo request and learn how to arrange " +
+            "collection with an authorised recycler.");
 
-        addInfo("Step 2",
-                "Estimate the quantity and note your area or city.");
+    LinearLayout form = column();
+    form.setPadding(16, 18, 16, 18);
+    form.setBackground(shape(PALE, 18));
 
-        addInfo("Step 3",
-                "Contact an authorised recycler to confirm " +
-                "whether collection is available in your area.");
+    form.addView(text("Your Name", 15, DARK, true));
+    EditText name = new EditText(this);
+    name.setHint("Enter your name");
+    name.setSingleLine(true);
+    form.addView(name);
 
-        addInfo("Prototype Notice",
-                "This demo does not submit a real pickup request " +
-                "or send information to a recycler.");
+    space(form, 10);
+    form.addView(text("Phone Number", 15, DARK, true));
+    EditText phone = new EditText(this);
+    phone.setHint("Enter 10-digit phone number");
+    phone.setInputType(3);
+    phone.setSingleLine(true);
+    form.addView(phone);
 
-        backButton();
-    }
+    space(form, 10);
+    form.addView(text("Device Type", 15, DARK, true));
+    Spinner device = new Spinner(this);
+    String[] devices = {
+            "Select a device",
+            "Mobile Phone",
+            "Laptop / Computer",
+            "TV / Monitor",
+            "Battery",
+            "Chargers / Cables",
+            "Other Electronics"
+    };
+    ArrayAdapter<String> adapter =
+            new ArrayAdapter<>(this,
+                    android.R.layout.simple_spinner_item, devices);
+    adapter.setDropDownViewResource(
+            android.R.layout.simple_spinner_dropdown_item);
+    device.setAdapter(adapter);
+    form.addView(device);
+
+    space(form, 10);
+    form.addView(text("Pickup Area / City", 15, DARK, true));
+    EditText area = new EditText(this);
+    area.setHint("Enter your area or city");
+    area.setSingleLine(true);
+    form.addView(area);
+
+    space(form, 10);
+    form.addView(text("Additional Details", 15, DARK, true));
+    EditText details = new EditText(this);
+    details.setHint("Quantity or other details (optional)");
+    details.setMinLines(2);
+    details.setGravity(Gravity.TOP);
+    form.addView(details);
+
+    space(form, 16);
+    content.addView(form);
+
+    space(content, 14);
+    Button submit = makeButton("Submit Demo Request");
+    content.addView(submit);
+
+    submit.setOnClickListener(v -> {
+        String userName = name.getText().toString().trim();
+        String userPhone = phone.getText().toString().trim();
+        String userArea = area.getText().toString().trim();
+
+        if (userName.isEmpty() || userPhone.isEmpty()
+                || userArea.isEmpty()
+                || device.getSelectedItemPosition() == 0) {
+            Toast.makeText(this,
+                    "Please fill in name, phone, device and area.",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (!userPhone.matches("[0-9]{10}")) {
+            Toast.makeText(this,
+                    "Enter a valid 10-digit phone number.",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        new AlertDialog.Builder(this)
+                .setTitle("Demo Request Prepared! ♻️")
+                .setMessage("Thank you, " + userName +
+                        "! Your " + device.getSelectedItem() +
+                        " pickup details have been checked.\n\n" +
+                        "This is a demo only. No request was sent " +
+                        "and no personal information was saved.")
+                .setPositiveButton("OK", (dialog, which) -> showHome())
+                .show();
+    });
+
+    space(content, 12);
+    backButton();
+}
 
     // COMMON PAGE
 
