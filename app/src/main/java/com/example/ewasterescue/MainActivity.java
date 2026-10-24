@@ -229,28 +229,55 @@ public class MainActivity extends Activity {
 
     // RECYCLING CENTRES
 
-    private void showCenters() {
-        page("Recycling Centres",
-                "Explore responsible recycling options.");
+    
+private void showCenters() {
+    page("Recycling Centres",
+            "Explore e-waste recycling options in Tamil Nadu.");
 
-        addInfo("Find an Authorised Recycler",
-                "Check official CPCB or Tamil Nadu Pollution " +
-                "Control Board resources for current recycler " +
-                "information.");
+    addInfo("♻️ Green Era Recyclers",
+            "Location: Coimbatore district\n" +
+            "Address: SF No. 91/1B, Sai Keerthi Industrial " +
+            "Estate, Seerapalayam, Coimbatore, Tamil Nadu.\n" +
+            "Contact the recycler to confirm accepted devices, " +
+            "collection service and current authorisation.");
 
-        Button info = makeButton("Centre Information");
-        content.addView(info);
-        info.setOnClickListener(v -> Toast.makeText(
-                MainActivity.this,
-                "Check official recycler listings before visiting.",
-                Toast.LENGTH_LONG).show());
+    addInfo("♻️ Techazar E-Cyclers Private Limited",
+            "Location: Coimbatore district\n" +
+            "Address: Mother India Industrial Estate, " +
+            "Seerapalayam Link Road, Coimbatore, Tamil Nadu.\n" +
+            "Confirm current registration and collection " +
+            "availability before visiting.");
 
-        addInfo("Before Visiting",
-                "Confirm accepted devices, opening hours and " +
-                "collection arrangements with the centre.");
+    addInfo("♻️ Earth Sense Recycle Private Limited",
+            "Location: Chengalpattu district\n" +
+            "Address: Survey No. 247, Thenmelpakkam Village, " +
+            "Chengalpattu district, Tamil Nadu.\n" +
+            "Contact the company before arranging delivery.");
 
-        backButton();
-    }
+    addInfo("♻️ E Cycle Solutions Private Limited",
+            "Location: Ambattur, Chennai\n" +
+            "Address: Pattravakkam village, Ambattur " +
+            "Industrial Estate, Chennai, Tamil Nadu.\n" +
+            "Confirm accepted e-waste categories and " +
+            "current authorisation before visiting.");
+
+    addInfo("🔎 Verify Before Visiting",
+            "Check the latest official recycler listings " +
+            "on the CPCB E-Waste EPR Portal and TNPCB website. " +
+            "Addresses and registration status may change.");
+
+    Button info = makeButton("Official Recycler Information");
+    content.addView(info);
+
+    info.setOnClickListener(v -> Toast.makeText(
+            MainActivity.this,
+            "Visit eprewaste.cpcb.gov.in and tnpcb.gov.in " +
+            "to verify current recycler information.",
+            Toast.LENGTH_LONG).show());
+
+    space(content, 12);
+    backButton();
+}
 
     // PICKUP INFORMATION
 
