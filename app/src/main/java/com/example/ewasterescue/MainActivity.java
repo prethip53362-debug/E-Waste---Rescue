@@ -202,6 +202,10 @@ public class MainActivity extends Activity {
                 "Check for repair or reuse before recycling " +
                 "through appropriate collection channels.");
 
+        addInfo("🖥️ TVs & Monitors",
+        "Handle screens carefully. Do not break or burn " +
+        "them. Use an authorised e-waste collection point.");
+        
         backButton();
     }
 
