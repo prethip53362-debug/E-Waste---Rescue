@@ -88,6 +88,7 @@ protected void onCreate(Bundle savedInstanceState) {
     // HOME SCREEN
 
     
+
 private void showSplash() {
     android.widget.FrameLayout root =
             new android.widget.FrameLayout(this);
@@ -103,76 +104,21 @@ private void showSplash() {
             new android.widget.FrameLayout.LayoutParams(
                     -1, -1));
 
-    LinearLayout content = new LinearLayout(this);
-    content.setOrientation(LinearLayout.VERTICAL);
-    content.setGravity(Gravity.CENTER);
-    content.setPadding(28, 30, 28, 30);
-
-    android.widget.FrameLayout.LayoutParams contentParams =
-            new android.widget.FrameLayout.LayoutParams(
-                    -1, -1);
-
-    root.addView(content, contentParams);
-
-    ImageView logo = new ImageView(this);
-    logo.setImageResource(R.drawable.ewaste_logo);
-
-    LinearLayout.LayoutParams logoParams =
-            new LinearLayout.LayoutParams(140, 140);
-
-    logo.setLayoutParams(logoParams);
-    logo.setScaleType(ImageView.ScaleType.FIT_CENTER);
-    content.addView(logo);
-
-    space(content, 18);
-
-    TextView title = text("E-WASTE", 32, Color.WHITE, true);
-    title.setGravity(Gravity.CENTER);
-    content.addView(title);
-
-    TextView subtitle = text("RESCUE", 28, GREEN, true);
-    subtitle.setGravity(Gravity.CENTER);
-    content.addView(subtitle);
-
-    space(content, 18);
-
-    TextView tagline = text(
-            "Give old electronics a new life.",
-            16, Color.WHITE, false);
-    tagline.setGravity(Gravity.CENTER);
-    content.addView(tagline);
-
     getWindow().setStatusBarColor(Color.rgb(8, 45, 32));
     getWindow().setNavigationBarColor(Color.rgb(8, 45, 32));
 
     setContentView(root);
 
     background.setAlpha(0f);
-background.setScaleX(1.08f);
-background.setScaleY(1.08f);
+    background.setScaleX(1.08f);
+    background.setScaleY(1.08f);
 
-background.animate()
-        .alpha(1f)
-        .scaleX(1f)
-        .scaleY(1f)
-        .setDuration(1800)
-        .start();
-
-root.postDelayed(() -> showHome(), 3000);
-
-    title.setAlpha(0f);
-    title.setTranslationY(35f);
-    title.animate().alpha(1f).translationY(0f)
-            .setStartDelay(350).setDuration(700).start();
-
-    subtitle.setAlpha(0f);
-    subtitle.setTranslationX(45f);
-    subtitle.animate().alpha(1f).translationX(0f)
-            .setStartDelay(650).setDuration(700).start();
-
-    tagline.setAlpha(0f);
-    tagline.animate().alpha(1f)
-            .setStartDelay(1100).setDuration(700).start();
+    background.animate()
+            .alpha(1f)
+            .scaleX(1f)
+            .scaleY(1f)
+            .setDuration(1800)
+            .start();
 
     root.postDelayed(() -> showHome(), 3000);
 }
