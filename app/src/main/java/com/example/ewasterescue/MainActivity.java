@@ -258,50 +258,253 @@ protected void onCreate(Bundle savedInstanceState) {
         LinearLayout.LayoutParams half =
                 new LinearLayout.LayoutParams(0, -2, 1);
         half.setMargins(0, 0, 6, 0);
-        stats.addView(stat1, half);
+private void showHome() {
+    getWindow().setStatusBarColor(BG);
+    getWindow().setNavigationBarColor(WHITE);
 
-        LinearLayout.LayoutParams half2 =
-                new LinearLayout.LayoutParams(0, -2, 1);
-        half2.setMargins(6, 0, 0, 0);
-        stats.addView(stat2, half2);
+    getWindow().getDecorView().setSystemUiVisibility(
+            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR |
+            View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
 
-        content.addView(stats);
-        space(content, 24);
+    ScrollView scroll = new ScrollView(this);
+    scroll.setFillViewport(true);
+    scroll.setBackgroundColor(BG);
+    scroll.setClipToPadding(false);
 
-        content.addView(text("Explore services",
-                21, DARK, true));
-        space(content, 14);
+    content = column();
+    content.setPadding(20, 20, 20, 30);
+    scroll.addView(content);
 
-        addService("📊", "Impact Dashboard",
-                "Explore our demo impact statistics",
-                () -> showDashboard());
+    // BRAND HEADER
+    LinearLayout brand = horizontal();
 
-        addService("📱", "Identify E-Waste",
-                "Find safe ways to handle electronics",
-                () -> showCategories());
+    TextView logo = text("♻", 31, GREEN, true);
+    logo.setGravity(Gravity.CENTER);
+    logo.setBackground(shape(PALE, 18));
 
-        addService("♻️", "Recycling Guide",
-                "Repair, reuse and recycle responsibly",
-                () -> showGuide());
+    brand.addView(logo,
+            new LinearLayout.LayoutParams(58, 58));
 
-        addService("📍", "Recycling Centres",
-                "Explore recycling options in Tamil Nadu",
-                () -> showCenters());
+    LinearLayout brandText = column();
+    brandText.setPadding(12, 0, 0, 0);
 
-        addService("🚚", "Request Pickup",
-                "Prepare a sample pickup request",
-                () -> showPickup());
+    brandText.addView(
+            text("E-WASTE", 21, DARK, true));
 
-        space(content, 18);
+    brandText.addView(
+            text("RESCUE  •  SMART RECYCLING",
+                    10, GREEN, true));
 
-        TextView footer = text(
-                "SMALL ACTIONS. BIGGER IMPACT.",
-                12, GREEN, true);
-        footer.setGravity(Gravity.CENTER);
-        content.addView(footer);
+    brand.addView(brandText,
+            new LinearLayout.LayoutParams(0, -2, 1));
 
-        setContentView(scroll);
-    }
+    TextView badge = text("ECO\nHERO", 10, GREEN, true);
+    badge.setGravity(Gravity.CENTER);
+    badge.setPadding(12, 8, 12, 8);
+    badge.setBackground(shape(PALE, 16));
+
+    brand.addView(badge);
+    content.addView(brand);
+
+    space(content, 26);
+
+    // HERO SECTION
+    LinearLayout hero = column();
+    hero.setPadding(22, 24, 22, 24);
+    hero.setBackground(shape(DARK, 26));
+
+    TextView eyebrow = text(
+            "♻  MAKE EVERY DEVICE COUNT",
+            11, Color.rgb(165, 235, 190), true);
+
+    hero.addView(eyebrow);
+    space(hero, 17);
+
+    hero.addView(text(
+            "Give old tech.\nA new purpose.",
+            32, WHITE, true));
+
+    space(hero, 12);
+
+    hero.addView(text(
+            "Your unused electronics can have a second life. "
+                    + "Choose smarter ways to repair, reuse "
+                    + "and recycle.",
+            14, Color.rgb(222, 239, 228), false));
+
+    space(hero, 22);
+
+    Button explore = makeButton("Explore E-Waste  →");
+    hero.addView(explore);
+
+    explore.setOnClickListener(v -> showCategories());
+
+    space(hero, 17);
+
+    TextView trust = text(
+            "REPAIR  •  REUSE  •  RECYCLE",
+            11, Color.rgb(185, 222, 195), true);
+
+    trust.setGravity(Gravity.CENTER);
+    hero.addView(trust);
+
+    content.addView(hero);
+
+    space(content, 27);
+
+    // SECTION TITLE
+    LinearLayout section = horizontal();
+
+    LinearLayout sectionText = column();
+
+    sectionText.addView(text(
+            "Your Eco Dashboard",
+            22, DARK, true));
+
+    space(sectionText, 4);
+
+    sectionText.addView(text(
+            "Small actions. Meaningful change.",
+            13, MUTED, false));
+
+    section.addView(sectionText,
+            new LinearLayout.LayoutParams(0, -2, 1));
+
+    TextView liveTag = text(
+            "DEMO", 10, GREEN, true);
+
+    liveTag.setPadding(10, 7, 10, 7);
+    liveTag.setBackground(shape(PALE, 20));
+    section.addView(liveTag);
+
+    content.addView(section);
+
+    space(content, 15);
+
+    // STATISTIC CARDS
+    LinearLayout stats = horizontal();
+
+    LinearLayout stat1 = column();
+    stat1.setPadding(15, 17, 10, 17);
+    stat1.setBackground(shape(WHITE, 20));
+
+    stat1.addView(text("♻", 27, GREEN, true));
+    space(stat1, 10);
+
+    stat1.addView(text("06", 29, DARK, true));
+
+    stat1.addView(text(
+            "Device categories",
+            12, MUTED, false));
+
+    LinearLayout stat2 = column();
+    stat2.setPadding(15, 17, 10, 17);
+    stat2.setBackground(shape(WHITE, 20));
+
+    stat2.addView(text("🌍", 27, GREEN, false));
+    space(stat2, 10);
+
+    stat2.addView(text("01", 29, DARK, true));
+
+    stat2.addView(text(
+            "Planet to protect",
+            12, MUTED, false));
+
+    LinearLayout.LayoutParams s1 =
+            new LinearLayout.LayoutParams(0, -2, 1);
+
+    s1.setMargins(0, 0, 7, 0);
+    stats.addView(stat1, s1);
+
+    LinearLayout.LayoutParams s2 =
+            new LinearLayout.LayoutParams(0, -2, 1);
+
+    s2.setMargins(7, 0, 0, 0);
+    stats.addView(stat2, s2);
+
+    content.addView(stats);
+
+    space(content, 28);
+
+    // SERVICES SECTION
+    content.addView(text(
+            "What would you like to do?",
+            21, DARK, true));
+
+    space(content, 5);
+
+    content.addView(text(
+            "Everything you need for responsible e-waste handling.",
+            13, MUTED, false));
+
+    space(content, 16);
+
+    addService(
+            "📊",
+            "Impact Dashboard",
+            "Explore illustrative sustainability statistics",
+            () -> showDashboard());
+
+    addService(
+            "📱",
+            "Identify E-Waste",
+            "Choose a device and discover safe handling tips",
+            () -> showCategories());
+
+    addService(
+            "♻️",
+            "Recycling Guide",
+            "Learn to repair, reuse and recycle responsibly",
+            () -> showGuide());
+
+    addService(
+            "📍",
+            "Recycling Centres",
+            "Explore recycler information and verification tips",
+            () -> showCenters());
+
+    addService(
+            "🚚",
+            "Request Pickup",
+            "Prepare a sample e-waste collection request",
+            () -> showPickup());
+
+    space(content, 18);
+
+    // FOOTER
+    LinearLayout footer = column();
+    footer.setGravity(Gravity.CENTER);
+    footer.setPadding(16, 18, 16, 18);
+    footer.setBackground(shape(PALE, 20));
+
+    TextView footerIcon = text(
+            "🌱", 27, GREEN, false);
+
+    footerIcon.setGravity(Gravity.CENTER);
+    footer.addView(footerIcon);
+
+    space(footer, 7);
+
+    TextView footerTitle = text(
+            "A cleaner future starts with you.",
+            15, DARK, true);
+
+    footerTitle.setGravity(Gravity.CENTER);
+    footer.addView(footerTitle);
+
+    space(footer, 5);
+
+    TextView footerSubtitle = text(
+            "THINK GREEN. RECYCLE SMART.",
+            10, GREEN, true);
+
+    footerSubtitle.setGravity(Gravity.CENTER);
+    footer.addView(footerSubtitle);
+
+    content.addView(footer);
+
+    setContentView(scroll);
+}
 
     private void addService(String emoji, String title,
                             String subtitle, Runnable action) {
