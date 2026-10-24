@@ -355,8 +355,9 @@ public class MainActivity extends Activity {
 
     private void backButton() {
     Button back = actionButton("← Back to Home");
+    content.addView(back);
+
     back.setOnClickListener(v -> {
         showHome();
     });
-}
 }
