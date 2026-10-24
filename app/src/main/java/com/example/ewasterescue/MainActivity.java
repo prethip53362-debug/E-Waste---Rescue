@@ -30,11 +30,15 @@ public class MainActivity extends Activity {
 
     private LinearLayout content;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        showHome();
-    }
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    getWindow().setStatusBarColor(GREEN);
+    getWindow().getDecorView().setSystemUiVisibility(0);
+
+    showHome();
+}
 
     private GradientDrawable shape(int color, int radius) {
         GradientDrawable d = new GradientDrawable();
