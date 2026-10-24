@@ -147,11 +147,18 @@ private void showSplash() {
 
     setContentView(root);
 
-    logo.setAlpha(0f);
-    logo.setScaleX(0.5f);
-    logo.setScaleY(0.5f);
-    logo.animate().alpha(1f).scaleX(1f).scaleY(1f)
-            .setDuration(900).start();
+    background.setAlpha(0f);
+background.setScaleX(1.08f);
+background.setScaleY(1.08f);
+
+background.animate()
+        .alpha(1f)
+        .scaleX(1f)
+        .scaleY(1f)
+        .setDuration(1800)
+        .start();
+
+root.postDelayed(() -> showHome(), 3000);
 
     title.setAlpha(0f);
     title.setTranslationY(35f);
