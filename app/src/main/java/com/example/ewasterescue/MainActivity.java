@@ -1,6 +1,8 @@
 
 package com.example.ewasterescue;
 
+import android.widget.ImageView;
+import android.graphics.Color;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
@@ -93,8 +95,10 @@ private void showSplash() {
     splash.setPadding(28, 30, 28, 30);
     splash.setBackgroundColor(Color.rgb(8, 45, 32));
 
-    TextView logo = text("♻", 76, GREEN, true);
-    logo.setGravity(Gravity.CENTER);
+    ImageView logo = new ImageView(this);
+logo.setImageResource(R.drawable.ewaste_logo);
+logo.setLayoutParams(new LinearLayout.LayoutParams(140, 140));
+logo.setScaleType(ImageView.ScaleType.FIT_CENTER);
     splash.addView(logo);
 
     space(splash, 18);
@@ -121,6 +125,10 @@ getWindow().setNavigationBarColor(Color.rgb(8, 45, 32));
     setContentView(splash);
 
     logo.setAlpha(0f);
+    logo.setScaleX(0.5f);
+logo.setScaleY(0.5f);
+logo.animate().alpha(1f).scaleX(1f).scaleY(1f)
+        .setDuration(900).start();
     logo.setScaleX(0.5f);
     logo.setScaleY(0.5f);
     logo.animate().alpha(1f).scaleX(1f).scaleY(1f)
