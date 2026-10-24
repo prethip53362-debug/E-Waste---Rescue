@@ -277,31 +277,84 @@ public class MainActivity extends Activity {
 
     // COMMON PAGE
 
+
 private void showDashboard() {
     page("Impact Dashboard",
-            "Every small action helps build a cleaner future.");
+            "Track our journey towards a cleaner future.");
 
-    addInfo("♻️  128 Demo Devices",
-            "Illustrative demo count for the hackathon. " +
-            "These are not actual collected devices.");
+    LinearLayout hero = column();
+    hero.setPadding(18, 20, 18, 20);
+    hero.setBackground(shape(GREEN, 22));
 
-    addInfo("📱  76 Demo Phones",
-            "Example statistic showing phones for reuse " +
-            "or responsible recycling.");
+    hero.addView(text("♻  TOTAL DEVICES",
+            14, Color.WHITE, true));
+    space(hero, 8);
+    hero.addView(text("128",
+            38, Color.WHITE, true));
+    space(hero, 6);
+    hero.addView(text("Demo statistics only",
+            13, Color.WHITE, false));
 
-    addInfo("💻  52 Other Devices",
-            "Example statistic for laptops and other " +
-            "electronic devices.");
+    LinearLayout.LayoutParams hp =
+            new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+    hp.bottomMargin = 14;
+    content.addView(hero, hp);
 
-    addInfo("🌍  Our Environmental Mission",
-            "Encourage repair, reuse and authorised " +
-            "recycling to reduce electronic waste.");
+    LinearLayout row = new LinearLayout(this);
+    row.setOrientation(LinearLayout.HORIZONTAL);
 
-    addInfo("💚  Be Part of the Change",
-            "Protect your personal data before recycling. " +
-            "Choose authorised e-waste collection services.");
+    LinearLayout phones = column();
+    phones.setPadding(14, 16, 10, 16);
+    phones.setBackground(shape(PALE, 18));
+    phones.addView(text("📱", 26, GREEN, false));
+    space(phones, 8);
+    phones.addView(text("76", 28, DARK, true));
+    phones.addView(text("Phones", 14, MUTED, true));
 
-    backButton();
+    LinearLayout laptops = column();
+    laptops.setPadding(14, 16, 10, 16);
+    laptops.setBackground(shape(PALE, 18));
+    laptops.addView(text("💻", 26, GREEN, false));
+    space(laptops, 8);
+    laptops.addView(text("52", 28, DARK, true));
+    laptops.addView(text("Other devices", 14, MUTED, true));
+
+    LinearLayout.LayoutParams half =
+            new LinearLayout.LayoutParams(
+                    0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
+    half.setMargins(0, 0, 6, 0);
+    row.addView(phones, half);
+
+    LinearLayout.LayoutParams half2 =
+            new LinearLayout.LayoutParams(
+                    0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
+    half2.setMargins(6, 0, 0, 0);
+    row.addView(laptops, half2);
+
+    LinearLayout.LayoutParams rp =
+            new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+    rp.bottomMargin = 14;
+    content.addView(row, rp);
+
+    addInfo("🌍  Our Mission",
+            "Promote repair, reuse and authorised recycling " +
+            "to reduce electronic waste.");
+
+    addInfo("💚  Make a Difference",
+            "Protect your personal data and choose authorised " +
+            "e-waste collection services.");
+
+    space(content, 8);
+
+    Button back = makeButton("←  Back to Home");
+    back.setTextColor(Color.WHITE);
+    back.setBackground(shape(GREEN, 16));
+    content.addView(back);
+    back.setOnClickListener(v -> showHome());
 }
     
     private void page(String title, String subtitle) {
