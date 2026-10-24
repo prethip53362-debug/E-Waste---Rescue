@@ -3,8 +3,8 @@
 
     <application
     android:allowBackup="true"
-    android:icon="@drawable/ewaste_logo"
-    android:roundIcon="@drawable/ewaste_logo"
+    android:icon="@drawable/ewaste_launcher"
+android:roundIcon="@drawable/ewaste_launcher"
     android:label="E-Waste Rescue"
         android:theme="@android:style/Theme.Material.Light.NoActionBar"
         android:supportsRtl="true">
