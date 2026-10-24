@@ -174,7 +174,7 @@ private void showHome() {
 
     ScrollView scroll = new ScrollView(this);
     scroll.setFillViewport(true);
-    scroll.setBackgroundColor(BG);
+    scroll.setBackgroundColor(Color.rgb(8, 45, 32));
     scroll.setClipToPadding(false);
 
     content = column();
