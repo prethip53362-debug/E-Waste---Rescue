@@ -267,13 +267,21 @@ private void showCenters() {
             "Addresses and registration status may change.");
 
     Button info = makeButton("Official Recycler Information");
-    content.addView(info);
+content.addView(info);
 
-    info.setOnClickListener(v -> Toast.makeText(
-            MainActivity.this,
-            "Visit eprewaste.cpcb.gov.in and tnpcb.gov.in " +
-            "to verify current recycler information.",
-            Toast.LENGTH_LONG).show());
+info.setOnClickListener(v -> {
+    try {
+        Intent intent = new Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://eprewaste.cpcb.gov.in/"));
+        startActivity(intent);
+    } catch (Exception e) {
+        Toast.makeText(
+                MainActivity.this,
+                "Unable to open the official website.",
+                Toast.LENGTH_LONG).show();
+    }
+});
 
     space(content, 12);
     backButton();
