@@ -109,7 +109,11 @@ public class MainActivity extends Activity {
         content.addView(text("What do you want to do?",
                 21, DARK, true));
         space(content, 14);
-
+        
+        addService("📊", "Impact Dashboard",
+        "Explore our environmental impact",
+        () -> showDashboard());
+        
         addService("📱", "Identify E-Waste",
                 "Learn how to handle electronic items",
                 () -> showCategories());
@@ -273,6 +277,33 @@ public class MainActivity extends Activity {
 
     // COMMON PAGE
 
+private void showDashboard() {
+    page("Impact Dashboard",
+            "Every small action helps build a cleaner future.");
+
+    addInfo("♻️  128 Demo Devices",
+            "Illustrative demo count for the hackathon. " +
+            "These are not actual collected devices.");
+
+    addInfo("📱  76 Demo Phones",
+            "Example statistic showing phones for reuse " +
+            "or responsible recycling.");
+
+    addInfo("💻  52 Other Devices",
+            "Example statistic for laptops and other " +
+            "electronic devices.");
+
+    addInfo("🌍  Our Environmental Mission",
+            "Encourage repair, reuse and authorised " +
+            "recycling to reduce electronic waste.");
+
+    addInfo("💚  Be Part of the Change",
+            "Protect your personal data before recycling. " +
+            "Choose authorised e-waste collection services.");
+
+    backButton();
+}
+    
     private void page(String title, String subtitle) {
         ScrollView scroll = new ScrollView(this);
         scroll.setFillViewport(true);
