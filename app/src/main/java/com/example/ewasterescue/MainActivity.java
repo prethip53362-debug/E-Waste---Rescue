@@ -184,7 +184,7 @@ private void showHome() {
     // BRAND HEADER
     LinearLayout brand = horizontal();
 
-    TextView logo = text("♻", 31, GREEN, true);
+    TextView logo = text("♻", 31, white, true);
     logo.setGravity(Gravity.CENTER);
     logo.setBackground(shape(PALE, 18));
 
@@ -332,16 +332,17 @@ private void showHome() {
 
     space(content, 28);
 
+    
     // SERVICES SECTION
     content.addView(text(
-        "What would you like to do?",
-        21, WHITE, true));
+            "What would you like to do?",
+            21, WHITE, true));
 
     space(content, 5);
 
     content.addView(text(
-        "Everything you need for responsible e-waste handling.",
-        13, Color.rgb(210, 230, 218), false));
+            "Everything you need for responsible e-waste handling.",
+            13, Color.rgb(210, 230, 218), false));
 
     space(content, 16);
 
@@ -378,6 +379,37 @@ private void showHome() {
     space(content, 18);
 
     // FOOTER
+    LinearLayout footer = column();
+    footer.setGravity(Gravity.CENTER);
+    footer.setPadding(16, 18, 16, 18);
+    footer.setBackground(shape(Color.rgb(18, 68, 49), 20));
+
+    TextView footerIcon = text(
+            "🌱", 27, Color.rgb(143, 227, 175), false);
+
+    footerIcon.setGravity(Gravity.CENTER);
+    footer.addView(footerIcon);
+
+    space(footer, 7);
+
+    TextView footerTitle = text(
+            "A cleaner future starts with you.",
+            15, WHITE, true);
+
+    footerTitle.setGravity(Gravity.CENTER);
+    footer.addView(footerTitle);
+
+    space(footer, 5);
+
+    TextView footerSubtitle = text(
+            "THINK GREEN. RECYCLE SMART.",
+            10, Color.rgb(143, 227, 175), true);
+
+    footerSubtitle.setGravity(Gravity.CENTER);
+    footer.addView(footerSubtitle);
+
+    content.addView(footer);
+
     LinearLayout footer = column();
     footer.setGravity(Gravity.CENTER);
     footer.setPadding(16, 18, 16, 18);
