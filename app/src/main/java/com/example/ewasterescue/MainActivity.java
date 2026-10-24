@@ -1,6 +1,8 @@
 
 package com.example.ewasterescue;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.app.Activity;
 import android.os.Bundle;
 import android.graphics.Color;
