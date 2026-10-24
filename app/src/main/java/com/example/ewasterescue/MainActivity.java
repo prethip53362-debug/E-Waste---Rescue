@@ -493,7 +493,7 @@ private void showDashboard() {
         scroll.setBackgroundColor(Color.WHITE);
 
         content = column();
-        content.setPadding(22, 26, 22, 30);
+        content.setPadding(22, 50, 22, 30);
         scroll.addView(content);
 
         content.addView(text(title, 27, DARK, true));
