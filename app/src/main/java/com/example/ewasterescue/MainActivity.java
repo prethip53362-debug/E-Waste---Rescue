@@ -307,7 +307,7 @@ brand.addView(logo,
 
     revealSecret.setOnClickListener(v -> {
         AlertDialog dialog = new AlertDialog.Builder(this)
-        .setTitle("For Deboran ❤️")
+        .setTitle("For Debu ❤️")
         .setMessage(
         "Hey Deborah... ❤️🫶\n\n"
         + "Unakkaga oru chinna surprise... aana athukku pinnadi "
