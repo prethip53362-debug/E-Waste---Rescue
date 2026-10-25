@@ -772,11 +772,89 @@ private void showPickup() {
         String userPhone = phone.getText().toString().trim();
         String userArea = area.getText().toString().trim();
 
+
+private void showPickup() {
+    page("Request Pickup",
+            "Arrange collection for your unwanted electronics.");
+
+    addInfo("♻️ Responsible Recycling",
+            "Provide your details to register a pickup request on this device.");
+
+    LinearLayout form = column();
+    form.setPadding(16, 18, 16, 18);
+    form.setBackground(shape(PALE, 18));
+
+    form.addView(text("Your Name", 15, DARK, true));
+    EditText name = new EditText(this);
+    name.setHint("Enter your name");
+    name.setSingleLine(true);
+    form.addView(name);
+
+    space(form, 10);
+    form.addView(text("Phone Number", 15, DARK, true));
+    EditText phone = new EditText(this);
+    phone.setHint("Enter 10-digit phone number");
+    phone.setInputType(3);
+    phone.setSingleLine(true);
+    form.addView(phone);
+
+    space(form, 10);
+    form.addView(text("Device Type", 15, DARK, true));
+    Spinner device = new Spinner(this);
+
+    String[] devices = {
+            "Select a device",
+            "Mobile Phone",
+            "Laptop / Computer",
+            "TV / Monitor",
+            "Battery",
+            "Chargers / Cables",
+            "Other Electronics"
+    };
+
+    ArrayAdapter<String> adapter =
+            new ArrayAdapter<>(this,
+                    android.R.layout.simple_spinner_item, devices);
+
+    adapter.setDropDownViewResource(
+            android.R.layout.simple_spinner_dropdown_item);
+    device.setAdapter(adapter);
+    form.addView(device);
+
+    space(form, 10);
+    form.addView(text("Pickup Area / City", 15, DARK, true));
+    EditText area = new EditText(this);
+    area.setHint("Enter your area or city");
+    area.setSingleLine(true);
+    form.addView(area);
+
+    space(form, 10);
+    form.addView(text("Additional Details", 15, DARK, true));
+    EditText details = new EditText(this);
+    details.setHint("Quantity or other details (optional)");
+    details.setMinLines(2);
+    details.setGravity(Gravity.TOP);
+    form.addView(details);
+
+    space(form, 16);
+    content.addView(form);
+
+    space(content, 14);
+    Button submit = makeButton("Submit Pickup Request");
+    content.addView(submit);
+
+    submit.setOnClickListener(v -> {
+        String userName = name.getText().toString().trim();
+        String userPhone = phone.getText().toString().trim();
+        String userArea = area.getText().toString().trim();
+        String userDetails = details.getText().toString().trim();
+        String userDevice = device.getSelectedItemPosition() == 0
+                ? "" : device.getSelectedItem().toString();
+
         if (userName.isEmpty() || userPhone.isEmpty()
-                || userArea.isEmpty()
-                || device.getSelectedItemPosition() == 0) {
+                || userArea.isEmpty() || userDevice.isEmpty()) {
             Toast.makeText(this,
-                    "Please fill in name, phone, device and area.",
+                    "Please fill in all required fields.",
                     Toast.LENGTH_LONG).show();
             return;
         }
@@ -788,14 +866,28 @@ private void showPickup() {
             return;
         }
 
+        // Save the request locally on this device.
+        String request =
+                "Name: " + userName
+                + "\nPhone: " + userPhone
+                + "\nDevice: " + userDevice
+                + "\nArea: " + userArea
+                + "\nDetails: " + userDetails;
+
+        getSharedPreferences("PickupRequests", MODE_PRIVATE)
+                .edit()
+                .putString("latest_request", request)
+                .apply();
+
         new AlertDialog.Builder(this)
-                .setTitle("Demo Request Prepared! ♻️")
-                .setMessage("Thank you, " + userName +
-                        "! Your " + device.getSelectedItem() +
-                        " pickup details have been checked.\n\n" +
-                        "This is a demo only. No request was sent " +
-                        "and no personal information was saved.")
-                .setPositiveButton("OK", (dialog, which) -> showHome())
+                .setTitle("Pickup Request Saved ♻️")
+                .setMessage("Thank you, " + userName
+                        + "! Your pickup request details have been saved on this device.\n\n"
+                        + "Device: " + userDevice
+                        + "\nArea: " + userArea
+                        + "\n\nTo send this request to a collection team, an online service connection is still required.")
+                .setPositiveButton("Done",
+                        (dialog, which) -> showHome())
                 .show();
     });
 
