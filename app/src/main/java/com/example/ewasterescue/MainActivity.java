@@ -414,35 +414,59 @@ private void showHome() {
     setContentView(scroll);
 }
 
-    private void addService(String emoji, String title,
-                            String subtitle, Runnable action) {
-        LinearLayout card = horizontal();
-        card.setPadding(14, 14, 14, 14);
-        card.setBackground(shape(WHITE, 18));
+    
+private void addService(String emoji, String title,
+                        String subtitle, Runnable action) {
 
-        LinearLayout.LayoutParams cp =
-                new LinearLayout.LayoutParams(-1, -2);
-        cp.bottomMargin = 11;
-        content.addView(card, cp);
+    LinearLayout card = horizontal();
+    card.setGravity(Gravity.CENTER_VERTICAL);
+    card.setPadding(16, 16, 14, 16);
+    card.setBackground(shape(WHITE, 20));
 
-        TextView icon = text(emoji, 25, GREEN, false);
-        icon.setGravity(Gravity.CENTER);
-        icon.setBackground(shape(PALE, 15));
-        card.addView(icon,
-                new LinearLayout.LayoutParams(54, 54));
+    // Soft card shadow
+    card.setElevation(3f);
 
-        LinearLayout details = column();
-        details.setPadding(12, 0, 5, 0);
-        details.addView(text(title, 16, DARK, true));
-        space(details, 4);
-        details.addView(text(subtitle, 12, MUTED, false));
+    LinearLayout.LayoutParams cp =
+            new LinearLayout.LayoutParams(-1, -2);
+    cp.bottomMargin = 13;
+    content.addView(card, cp);
 
-        card.addView(details,
-                new LinearLayout.LayoutParams(0, -2, 1));
+    // Mint icon container
+    LinearLayout iconBox = new LinearLayout(this);
+    iconBox.setGravity(Gravity.CENTER);
+    iconBox.setBackground(shape(PALE, 16));
 
-        card.addView(text("›", 28, GREEN, true));
-        card.setOnClickListener(v -> action.run());
-    }
+    TextView icon = text(emoji, 25, GREEN, false);
+    iconBox.addView(icon);
+
+    card.addView(iconBox,
+            new LinearLayout.LayoutParams(54, 54));
+
+    // Title and subtitle
+    LinearLayout details = column();
+    details.setGravity(Gravity.CENTER_VERTICAL);
+    details.setPadding(14, 0, 8, 0);
+
+    TextView titleText = text(title, 16, DARK, true);
+    details.addView(titleText);
+
+    space(details, 5);
+
+    TextView subtitleText = text(subtitle, 12, MUTED, false);
+    details.addView(subtitleText);
+
+    card.addView(details,
+            new LinearLayout.LayoutParams(0, -2, 1));
+
+    // Right arrow
+    TextView arrow = text("›", 28, GREEN, true);
+    arrow.setGravity(Gravity.CENTER);
+    card.addView(arrow,
+            new LinearLayout.LayoutParams(24, -2));
+
+    // Preserve existing navigation
+    card.setOnClickListener(v -> action.run());
+}
 
     private void showCategories() {
         preparePage("Identify E-Waste",
