@@ -268,6 +268,74 @@ brand.addView(logo,
     hero.addView(trust);
 
     content.addView(hero);
+    
+    // PRIVATE SECRET MESSAGE CARD
+    space(content, 20);
+
+    LinearLayout secretCard = column();
+    secretCard.setPadding(20, 20, 20, 20);
+    secretCard.setBackground(shape(
+            Color.rgb(248, 244, 255), 22));
+
+    LinearLayout secretHeader = horizontal();
+
+    TextView secretIcon = text("🔐", 28, DARK, true);
+    secretHeader.addView(secretIcon);
+
+    LinearLayout secretTitles = column();
+    secretTitles.setPadding(12, 0, 0, 0);
+    secretTitles.addView(text(
+            "A Little Secret", 19, DARK, true));
+    secretTitles.addView(text(
+            "Only for someone special ✨",
+            12, GREEN, false));
+
+    secretHeader.addView(secretTitles);
+    secretCard.addView(secretHeader);
+
+    space(secretCard, 14);
+
+    TextView secretHint = text(
+            "There's a little message waiting for you...",
+            13, DARK, false);
+    secretCard.addView(secretHint);
+
+    space(secretCard, 14);
+
+    Button revealSecret = makeButton("Open Your Surprise  ♥");
+    secretCard.addView(revealSecret);
+
+    revealSecret.setOnClickListener(v -> {
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle("For Deboran ❤️")
+                .setMessage(
+                        "Hey Deboran! 💗\n\n"
+                        + "இந்த E-Waste Rescue project-ல் "
+                        + "ஒரு சின்ன secret இருக்கு...\n\n"
+                        + "இந்த project-ஐ உருவாக்கியதற்குப் பின்னால் "
+                        + "ஒரு special reason இருக்கு. அது நீ தான்! 🫶\n\n"
+                        + "எப்போதும் சந்தோஷமாக இரு. "
+                        + "உன் smile எப்போதும் இப்படியே இருக்கட்டும். ✨")
+                .setPositiveButton("Keep this secret 🤍",
+                        (d, which) -> {
+                            content.removeView(secretCard);
+                        })
+                .setNegativeButton("Read again", null)
+                .create();
+
+        dialog.show();
+
+        if (dialog.getWindow() != null) {
+            android.graphics.drawable.GradientDrawable bg =
+                    new android.graphics.drawable.GradientDrawable();
+            bg.setColor(Color.rgb(248, 244, 255));
+            bg.setCornerRadius(32);
+            dialog.getWindow().setBackgroundDrawable(bg);
+        }
+
+    });
+
+    content.addView(secretCard);
 
     // SECTION TITLE
     LinearLayout section = horizontal();
