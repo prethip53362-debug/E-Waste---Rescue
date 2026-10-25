@@ -310,7 +310,9 @@ brand.addView(logo,
                 .setTitle("For Deborah ❤️")
                 .setMessage(
                         
-.setMessage(
+AlertDialog dialog = new AlertDialog.Builder(this)
+        .setTitle("For Deboran ❤️")
+        .setMessage(
         "Hey Deborah... ❤️🫶\n\n"
         + "Unakkaga oru chinna surprise... aana athukku pinnadi "
         + "irukkira feelings romba perusu. 🥹❤️\n\n"
@@ -373,7 +375,6 @@ brand.addView(logo,
         + "With lots of love... ❤️\n"
         + "From someone who wanted to make you smile. 🫶🔐"
 )
-
                 .setPositiveButton("Keep this secret 🤍",
                         (d, which) -> {
                             content.removeView(secretCard);
