@@ -142,11 +142,16 @@ protected void onCreate(Bundle savedInstanceState) {
 
         LinearLayout header = horizontal();
         
-TextView mark = text("🌿", 28, GREEN, true);
-mark.setGravity(Gravity.CENTER);
+
+ImageView mark = new ImageView(this);
+mark.setImageResource(R.drawable.ewaste_logo);
+mark.setScaleType(ImageView.ScaleType.FIT_CENTER);
 mark.setBackground(shape(PALE, 16));
+mark.setPadding(5, 5, 5, 5);
+
 header.addView(mark,
         new LinearLayout.LayoutParams(54, 54));
+
 
         LinearLayout heading = column();
         heading.setPadding(12, 0, 0, 0);
