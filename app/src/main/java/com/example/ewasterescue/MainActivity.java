@@ -182,10 +182,11 @@ private void showHome() {
     content.setPadding(20, 20, 20, 30);
     scroll.addView(content);
 
-    // BRAND HEADER
+    
+ // BRAND HEADER
     LinearLayout brand = horizontal();
 
-    TextView logo = text("♻", 31, WHITE, true);
+    TextView logo = text("🌿", 31, GREEN, true);
     logo.setGravity(Gravity.CENTER);
     logo.setBackground(shape(PALE, 18));
 
