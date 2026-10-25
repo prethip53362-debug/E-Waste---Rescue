@@ -815,12 +815,6 @@ private void showPickup() {
     space(content, 12);
     backButton();
 }
-
-
-private void showPickup() {
-
-
-    // COMMON PAGE
     
     private void page(String title, String subtitle) {
         ScrollView scroll = new ScrollView(this);
