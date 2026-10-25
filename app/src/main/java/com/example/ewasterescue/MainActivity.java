@@ -309,13 +309,71 @@ brand.addView(logo,
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle("For Deborah ❤️")
                 .setMessage(
-                        "Hey Deborah! 💗\n\n"
-                        + "இந்த E-Waste Rescue project-ல் "
-                        + "ஒரு சின்ன secret இருக்கு...\n\n"
-                        + "இந்த project-ஐ உருவாக்கியதற்குப் பின்னால் "
-                        + "ஒரு special reason இருக்கு. அது நீ தான்! 🫶\n\n"
-                        + "எப்போதும் சந்தோஷமாக இரு. "
-                        + "உன் smile எப்போதும் இப்படியே இருக்கட்டும். ✨")
+                        
+.setMessage(
+        "Hey Deborah... ❤️🫶\n\n"
+        + "Unakkaga oru chinna surprise... aana athukku pinnadi "
+        + "irukkira feelings romba perusu. 🥹❤️\n\n"
+
+        + "Indha app-ai nee open pannumbodhu, idhu oru "
+        + "ordinary project madhiri theriyalaam. Aana "
+        + "idhukku pinnadi enakku romba special-aana oru "
+        + "kaaranam irukku... adhu neethaan, Debu. ❤️\n\n"
+
+        + "Unakkaga edhaavadhu oru vishayam seiyanum, "
+        + "nee adha paathu sandhoshappadanum, un mugathula "
+        + "oru chinna smile varanum — idhudhaan en aasai. "
+        + "Andha smile-ai paarkkira sandhoshathai "
+        + "vaarthaigalaal solla mudiyadhu. 🥹💗\n\n"
+
+        + "Nee en vaazhkaiyil vandha piragu, chinna chinna "
+        + "vishayangalukkukooda oru special meaning "
+        + "kidaichirukku. Unnodu pesuradhu, unnodu "
+        + "sirippai paarkkuradhu, unnai ninaikkiradhu — "
+        + "idhellaame enakku precious moments. ❤️✨\n\n"
+
+        + "Sila feelings-ai neril sollumbodhu vaarthaigal "
+        + "kidaikkaadhu. Adhanaal dhaan indha secret-kulla "
+        + "en manasula irukkira konjam feelings-ai "
+        + "vaikka ninaichen. 💌\n\n"
+
+        + "Debu, unnudaiya kanavugal ellaam niraiveranum. "
+        + "Nee vaazhkaiyil periya alavukku saadhikkanum. "
+        + "Unakku sandhosham kodukkira vishayangal "
+        + "un vaazhkaiyil niraiya varanum. 🌷🫶\n\n"
+
+        + "Indha project ellaarukkum E-Waste Rescue-aaga "
+        + "irukkalaam. Aana enakku, idhukkulla unakkaga "
+        + "maraithu vaithirukkira oru chinna ninaivum "
+        + "irukku. ❤️🔐\n\n"
+
+        + "Future-la namakku eththanai maatrangal vandhaalum, "
+        + "namma kanavugalukkaaga thodarndhu muyarchi "
+        + "seiyanum. Oruvarai oruvar purindhukondu, "
+        + "mariyaadhai koduthu, sandhoshathilum "
+        + "kashtathilum thunaiyaaga irukkanum enbadhu "
+        + "en aasai. 🤍\n\n"
+
+        + "Naan eppodhum perfect-a iruppen-nu solla mudiyaadhu. "
+        + "Aana un feelings-ai madhikkavum, unnai "
+        + "gavanikkavum, ennaal mudindhavarai unakku "
+        + "magizhchiyai kodukkavum muyarchi seiven. ❤️\n\n"
+
+        + "You are not just the reason behind this little "
+        + "surprise... you are the person who makes this "
+        + "little surprise meaningful. ❤️🥹\n\n"
+
+        + "Indha message-ai padikkumbodhu unakku oru "
+        + "chinna smile vandhirundhaale, ennudaiya "
+        + "surprise vetri petrivittadhu. 🫶💗\n\n"
+
+        + "Stay happy, keep shining, and never stop "
+        + "believing in yourself, my Debu. 🌷✨\n\n"
+
+        + "With lots of love... ❤️\n"
+        + "From someone who wanted to make you smile. 🫶🔐"
+)
+
                 .setPositiveButton("Keep this secret 🤍",
                         (d, which) -> {
                             content.removeView(secretCard);
