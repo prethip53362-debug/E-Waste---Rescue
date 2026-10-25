@@ -191,12 +191,15 @@ private void showHome() {
  // BRAND HEADER
     LinearLayout brand = horizontal();
 
-    TextView logo = text("🌿", 31, GREEN, true);
-    logo.setGravity(Gravity.CENTER);
-    logo.setBackground(shape(PALE, 18));
+    
+ImageView logo = new ImageView(this);
+logo.setImageResource(R.drawable.ewaste_logo);
+logo.setScaleType(ImageView.ScaleType.FIT_CENTER);
+logo.setBackground(shape(PALE, 18));
+logo.setPadding(5, 5, 5, 5);
 
-    brand.addView(logo,
-            new LinearLayout.LayoutParams(58, 58));
+brand.addView(logo,
+        new LinearLayout.LayoutParams(58, 58));
 
     LinearLayout brandText = column();
     brandText.setPadding(12, 0, 0, 0);
