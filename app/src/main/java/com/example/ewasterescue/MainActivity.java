@@ -141,12 +141,12 @@ protected void onCreate(Bundle savedInstanceState) {
         scroll.addView(content);
 
         LinearLayout header = horizontal();
-
-        TextView mark = text("♻", 28, GREEN, true);
-        mark.setGravity(Gravity.CENTER);
-        mark.setBackground(shape(PALE, 16));
-        header.addView(mark,
-                new LinearLayout.LayoutParams(54, 54));
+        
+TextView mark = text("🌿", 28, GREEN, true);
+mark.setGravity(Gravity.CENTER);
+mark.setBackground(shape(PALE, 16));
+header.addView(mark,
+        new LinearLayout.LayoutParams(54, 54));
 
         LinearLayout heading = column();
         heading.setPadding(12, 0, 0, 0);
