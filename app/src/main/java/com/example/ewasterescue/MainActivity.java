@@ -307,10 +307,6 @@ brand.addView(logo,
 
     revealSecret.setOnClickListener(v -> {
         AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle("For Deborah ❤️")
-                .setMessage(
-                        
-AlertDialog dialog = new AlertDialog.Builder(this)
         .setTitle("For Deboran ❤️")
         .setMessage(
         "Hey Deborah... ❤️🫶\n\n"
@@ -381,7 +377,7 @@ AlertDialog dialog = new AlertDialog.Builder(this)
                         })
                 .setNegativeButton("Read again", null)
                 .create();
-
+                        
         dialog.show();
 
         if (dialog.getWindow() != null) {
