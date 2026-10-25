@@ -24,7 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
-
+private boolean isHomeScreen = true;
+    
     private final int GREEN = Color.rgb(24, 128, 83);
     private final int DARK = Color.rgb(19, 50, 39);
     private final int PALE = Color.rgb(235, 247, 239);
@@ -171,6 +172,7 @@ header.addView(mark,
     }
 
 private void showHome() {
+    isHomeScreen = true;
     getWindow().setStatusBarColor(BG);
     getWindow().setNavigationBarColor(WHITE);
 
@@ -817,6 +819,7 @@ private void showPickup() {
 }
     
     private void page(String title, String subtitle) {
+        isHomeScreen = false;
         ScrollView scroll = new ScrollView(this);
         scroll.setFillViewport(true);
         scroll.setBackgroundColor(Color.WHITE);
@@ -887,4 +890,12 @@ private Button makeButton(String label) {
 
         back.setOnClickListener(v -> showHome());
     }
+    @Override
+public void onBackPressed() {
+    if (!isHomeScreen) {
+        showHome();
+    } else {
+        super.onBackPressed();
+    }
+}
 }
