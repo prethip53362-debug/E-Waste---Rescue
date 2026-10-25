@@ -417,34 +417,38 @@ private void showHome() {
 }
 
     
+
 private void addService(String emoji, String title,
                         String subtitle, Runnable action) {
 
     LinearLayout card = horizontal();
     card.setGravity(Gravity.CENTER_VERTICAL);
-    card.setPadding(16, 16, 14, 16);
-    card.setBackground(shape(WHITE, 20));
-
-    // Soft card shadow
-    card.setElevation(3f);
+    card.setPadding(16, 17, 14, 17);
+    card.setBackground(shape(WHITE, 22));
+    card.setElevation(2f);
+    card.setClickable(true);
+    card.setFocusable(true);
 
     LinearLayout.LayoutParams cp =
             new LinearLayout.LayoutParams(-1, -2);
-    cp.bottomMargin = 13;
+    cp.bottomMargin = 14;
     content.addView(card, cp);
 
-    // Mint icon container
+    // Premium mint icon container
     LinearLayout iconBox = new LinearLayout(this);
     iconBox.setGravity(Gravity.CENTER);
-    iconBox.setBackground(shape(PALE, 16));
+    iconBox.setBackground(shape(
+            Color.rgb(230, 247, 236), 18));
 
-    TextView icon = text(emoji, 25, GREEN, false);
-    iconBox.addView(icon);
+    TextView icon = text(emoji, 26, GREEN, false);
+    icon.setGravity(Gravity.CENTER);
+    iconBox.addView(icon,
+            new LinearLayout.LayoutParams(-1, -1));
 
     card.addView(iconBox,
-            new LinearLayout.LayoutParams(54, 54));
+            new LinearLayout.LayoutParams(56, 56));
 
-    // Title and subtitle
+    // Service title and description
     LinearLayout details = column();
     details.setGravity(Gravity.CENTER_VERTICAL);
     details.setPadding(14, 0, 8, 0);
@@ -452,22 +456,35 @@ private void addService(String emoji, String title,
     TextView titleText = text(title, 16, DARK, true);
     details.addView(titleText);
 
-    space(details, 5);
+    space(details, 6);
 
-    TextView subtitleText = text(subtitle, 12, MUTED, false);
+    TextView subtitleText = text(
+            subtitle, 12, MUTED, false);
     details.addView(subtitleText);
 
     card.addView(details,
             new LinearLayout.LayoutParams(0, -2, 1));
 
-    // Right arrow
-    TextView arrow = text("›", 28, GREEN, true);
+    // Navigation arrow
+    TextView arrow = text("›", 29, GREEN, true);
     arrow.setGravity(Gravity.CENTER);
+
     card.addView(arrow,
             new LinearLayout.LayoutParams(24, -2));
 
     // Preserve existing navigation
-    card.setOnClickListener(v -> action.run());
+    card.setOnClickListener(v -> {
+        v.animate()
+                .scaleX(0.98f)
+                .scaleY(0.98f)
+                .setDuration(80)
+                .withEndAction(() -> {
+                    v.setScaleX(1f);
+                    v.setScaleY(1f);
+                    action.run();
+                })
+                .start();
+    });
 }
 
     private void showCategories() {
