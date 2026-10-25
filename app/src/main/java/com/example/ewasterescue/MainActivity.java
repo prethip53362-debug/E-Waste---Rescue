@@ -150,9 +150,10 @@ protected void onCreate(Bundle savedInstanceState) {
 
         LinearLayout heading = column();
         heading.setPadding(12, 0, 0, 0);
-        heading.addView(text(title, 25, DARK, true));
+        heading.addView(text(title, 25, WHITE, true));
         space(heading, 3);
-        heading.addView(text(subtitle, 13, MUTED, false));
+        heading.addView(text(
+        subtitle, 13, Color.rgb(210, 230, 218), false));
 
         header.addView(heading,
                 new LinearLayout.LayoutParams(
