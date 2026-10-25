@@ -342,7 +342,7 @@ private void showHome() {
 
     content.addView(text(
             "Everything you need for responsible e-waste handling.",
-            13, Color.rgb(210, 230, 218), false));
+13, MUTED, false
 
     space(content, 16);
 
