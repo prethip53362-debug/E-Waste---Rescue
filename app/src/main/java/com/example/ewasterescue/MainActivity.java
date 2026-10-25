@@ -894,8 +894,7 @@ private Button makeButton(String label) {
 public void onBackPressed() {
     if (!isHomeScreen) {
         showHome();
-    } else {
-        super.onBackPressed();
+        return;
     }
-}
+    finish();
 }
