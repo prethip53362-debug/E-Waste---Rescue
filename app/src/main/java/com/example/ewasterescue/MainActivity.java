@@ -327,58 +327,6 @@ private void showHome() {
 
     s2.setMargins(7, 0, 0, 0);
     stats.addView(stat2, s2);
-
-    
-    // PREMIUM STATISTIC CARDS
-    LinearLayout stats = horizontal();
-
-    LinearLayout stat1 = column();
-    stat1.setGravity(Gravity.CENTER_VERTICAL);
-    stat1.setPadding(16, 18, 12, 18);
-    stat1.setBackground(shape(WHITE, 20));
-    stat1.setElevation(3f);
-
-    stat1.addView(text("♻️", 28, GREEN, false));
-    space(stat1, 12);
-
-    stat1.addView(text("06", 30, DARK, true));
-    space(stat1, 3);
-
-    stat1.addView(text(
-            "Device categories",
-            12, MUTED, false));
-
-    LinearLayout stat2 = column();
-    stat2.setGravity(Gravity.CENTER_VERTICAL);
-    stat2.setPadding(16, 18, 12, 18);
-    stat2.setBackground(shape(WHITE, 20));
-    stat2.setElevation(3f);
-
-    stat2.addView(text("🌍", 28, GREEN, false));
-    space(stat2, 12);
-
-    stat2.addView(text("01", 30, DARK, true));
-    space(stat2, 3);
-
-    stat2.addView(text(
-            "Planet to protect",
-            12, MUTED, false));
-
-    LinearLayout.LayoutParams s1 =
-            new LinearLayout.LayoutParams(0, -2, 1);
-
-    s1.setMargins(0, 0, 7, 0);
-    stats.addView(stat1, s1);
-
-    LinearLayout.LayoutParams s2 =
-            new LinearLayout.LayoutParams(0, -2, 1);
-
-    s2.setMargins(7, 0, 0, 0);
-    stats.addView(stat2, s2);
-
-    content.addView(stats);
-
-    space(content, 28);
     
     // SERVICES SECTION
     content.addView(text(
