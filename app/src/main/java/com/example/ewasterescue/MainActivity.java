@@ -374,36 +374,42 @@ private void showHome() {
 
     space(content, 18);
 
-    // FOOTER
-
+    
+    // PREMIUM ECO FOOTER
     LinearLayout footer = column();
     footer.setGravity(Gravity.CENTER);
-    footer.setPadding(16, 18, 16, 18);
-    footer.setBackground(shape(PALE, 20));
+    footer.setPadding(20, 22, 20, 22);
+    footer.setBackground(shape(
+            Color.rgb(232, 247, 237), 24));
 
     TextView footerIcon = text(
-            "🌱", 27, GREEN, false);
-
+            "🌿", 32, GREEN, true);
     footerIcon.setGravity(Gravity.CENTER);
     footer.addView(footerIcon);
 
-    space(footer, 7);
+    space(footer, 10);
 
     TextView footerTitle = text(
-            "A cleaner future starts with you.",
-            15, DARK, true);
-
+            "Small Actions. Big Impact.",
+            18, DARK, true);
     footerTitle.setGravity(Gravity.CENTER);
     footer.addView(footerTitle);
 
-    space(footer, 5);
+    space(footer, 7);
 
     TextView footerSubtitle = text(
-            "THINK GREEN. RECYCLE SMART.",
-            10, GREEN, true);
-
+            "Give your old electronics a greener future.",
+            13, GREEN, false);
     footerSubtitle.setGravity(Gravity.CENTER);
     footer.addView(footerSubtitle);
+
+    space(footer, 12);
+
+    TextView footerTag = text(
+            "THINK GREEN  •  RECYCLE SMART",
+            10, GREEN, true);
+    footerTag.setGravity(Gravity.CENTER);
+    footer.addView(footerTag);
 
     content.addView(footer);
 
