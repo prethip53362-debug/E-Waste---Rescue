@@ -216,49 +216,48 @@ private void showHome() {
 
     space(content, 26);
 
-    // HERO SECTION
+    
+    // PREMIUM HERO SECTION
     LinearLayout hero = column();
     hero.setPadding(22, 24, 22, 24);
-    hero.setBackground(shape(DARK, 26));
+    hero.setBackground(shape(
+            Color.rgb(8, 55, 40), 24));
 
     TextView eyebrow = text(
-            "♻  MAKE EVERY DEVICE COUNT",
-            11, Color.rgb(165, 235, 190), true);
-
+            "🌿  MAKE EVERY DEVICE COUNT",
+            12, Color.rgb(165, 235, 190), true);
     hero.addView(eyebrow);
-    space(hero, 17);
+
+    space(hero, 20);
 
     hero.addView(text(
             "Give old tech.\nA new purpose.",
             32, WHITE, true));
 
-    space(hero, 12);
+    space(hero, 14);
 
     hero.addView(text(
             "Your unused electronics can have a second life. "
                     + "Choose smarter ways to repair, reuse "
-                    + "and recycle.",
+                    + "and recycle responsibly.",
             14, Color.rgb(222, 239, 228), false));
 
-    space(hero, 22);
+    space(hero, 24);
 
     Button explore = makeButton("Explore E-Waste  →");
     hero.addView(explore);
 
     explore.setOnClickListener(v -> showCategories());
 
-    space(hero, 17);
+    space(hero, 16);
 
     TextView trust = text(
             "REPAIR  •  REUSE  •  RECYCLE",
             11, Color.rgb(185, 222, 195), true);
-
     trust.setGravity(Gravity.CENTER);
     hero.addView(trust);
 
     content.addView(hero);
-
-    space(content, 27);
 
     // SECTION TITLE
     LinearLayout section = horizontal();
