@@ -341,8 +341,8 @@ private void showHome() {
     space(content, 5);
 
     content.addView(text(
-            "Everything you need for responsible e-waste handling.",
-13, MUTED, false
+        "Everything you need for responsible e-waste handling.",
+        13, MUTED, false));
 
     space(content, 16);
 
