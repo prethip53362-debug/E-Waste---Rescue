@@ -307,9 +307,9 @@ brand.addView(logo,
 
     revealSecret.setOnClickListener(v -> {
         AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle("For Deboran ❤️")
+                .setTitle("For Deborah ❤️")
                 .setMessage(
-                        "Hey Deboran! 💗\n\n"
+                        "Hey Deborah! 💗\n\n"
                         + "இந்த E-Waste Rescue project-ல் "
                         + "ஒரு சின்ன secret இருக்கு...\n\n"
                         + "இந்த project-ஐ உருவாக்கியதற்குப் பின்னால் "
