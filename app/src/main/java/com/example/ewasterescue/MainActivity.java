@@ -269,36 +269,6 @@ brand.addView(logo,
 
     content.addView(hero);
     
-    // PRIVATE SECRET MESSAGE CARD
-    space(content, 20);
-
-    LinearLayout secretCard = column();
-    secretCard.setPadding(20, 20, 20, 20);
-    secretCard.setBackground(shape(
-            Color.rgb(248, 244, 255), 22));
-
-    LinearLayout secretHeader = horizontal();
-
-    TextView secretIcon = text("🔐", 28, DARK, true);
-    secretHeader.addView(secretIcon);
-
-    LinearLayout secretTitles = column();
-    secretTitles.setPadding(12, 0, 0, 0);
-    secretTitles.addView(text(
-            "A Little Secret", 19, DARK, true));
-    secretTitles.addView(text(
-            "Only for someone special ✨",
-            12, GREEN, false));
-
-    secretHeader.addView(secretTitles);
-    secretCard.addView(secretHeader);
-
-    space(secretCard, 14);
-
-    TextView secretHint = text(
-            "There's a little message waiting for you...",
-            13, DARK, false);
-    
     // SECTION TITLE
     LinearLayout section = horizontal();
 
